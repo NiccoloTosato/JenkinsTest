@@ -23,7 +23,8 @@ pipeline {
               }
               steps {
                     echo 'Inside the container finally'
-                    sh 'ps'
+                    sh 'pwd'
+                    sh 'ls'
               }
         }
    }
