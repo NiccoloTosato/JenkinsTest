@@ -15,6 +15,8 @@ pipeline {
                      dockerfile {
                                 filename 'Dockerfile'
                                 label 'builder && epyc'
+		                args '-e JAVA_OPTS="-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true"'
+
                      }
               }
               steps {
@@ -32,6 +34,7 @@ dockerfile {
             filename 'Dockerfile'
             dir '/u/builder/builder/building_container/orfeobuild/images/fedora37'
             label 'builder && epyc'
+	    args '-e JAVA_OPTS="-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true"'
         }
     }
 
