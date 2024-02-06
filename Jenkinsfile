@@ -15,7 +15,7 @@ pipeline {
                      dockerfile {
                                 filename 'Dockerfile'
                                 label 'builder && epyc'
-		                args '-e JAVA_OPTS="-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true"'
+		                args '-e JAVA_OPTS=\"-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true\"'
 
                      }
               }
