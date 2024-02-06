@@ -18,7 +18,9 @@ pipeline {
                      }
               }
               steps {
-                    echo 'Inside the container finally ! '
+                    echo 'Inside the container finally'
+              sh 'pwd'
+
               }
         }
    }
