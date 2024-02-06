@@ -19,7 +19,6 @@ pipeline {
               }
               steps {
                     echo 'Inside the container finally ! '
-                    sh 'cat *'
               }
         }
    }
