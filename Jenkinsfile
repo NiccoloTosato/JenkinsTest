@@ -10,8 +10,19 @@ pipeline {
               sh 'pwd'
               }
          }
-     }
-}
+        stage ('In container step') {
+              agent {
+                     dockerfile {
+                                filename 'Dockerfile'
+                                label 'builder && epyc'
+                     }
+              }
+              steps {
+                    echo 'Inside the container finally ! '
+                    sh 'pwd'
+              }
+        }
+
 
 /*
 dockerfile {
