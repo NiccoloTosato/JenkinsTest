@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('Donwload repo') {
               agent {
-                          label 'docker'   
+                    label 'builder && epyc'
               }
               steps {
               sh 'ls'
@@ -15,12 +15,11 @@ pipeline {
               agent {
                      dockerfile {
                                 filename 'Dockerfile'
-                                label 'docker'
+                                label 'builder && epyc'
                      }
               }
               steps {
                     echo 'Inside the container finally'
-                    sh 'pwd'
               }
         }
    }
