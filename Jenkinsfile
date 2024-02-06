@@ -3,26 +3,24 @@ pipeline {
     stages {
         stage ('Donwload repo') {
               agent {
-                          label 'builder && epyc'   
+                          label 'docker'   
               }
               steps {
               sh 'ls'
               sh 'pwd'
               }
          }
+
         stage ('In container step') {
               agent {
                      dockerfile {
                                 filename 'Dockerfile'
-                                label 'builder && epyc'
-		                args '-e JAVA_OPTS=\"-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true\"'
-
+                                label 'docker'
                      }
               }
               steps {
                     echo 'Inside the container finally'
-              sh 'pwd'
-
+                    sh 'pwd'
               }
         }
    }
