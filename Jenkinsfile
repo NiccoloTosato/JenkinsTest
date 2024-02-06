@@ -15,8 +15,7 @@ pipeline {
                      dockerfile {
                                 filename 'Dockerfile'
                                 label 'builder && epyc'
-                                args '-t latest'
-                     }
+                                                     }
               }
               steps {
                     echo 'Inside the container finally ! '
