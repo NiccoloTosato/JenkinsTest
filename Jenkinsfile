@@ -6,7 +6,7 @@ pipeline {
                           label 'builder && epyc'   
               }
               steps {
-              ls
+              sh 'ls'
               }
          }
      }
