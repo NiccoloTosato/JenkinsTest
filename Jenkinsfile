@@ -15,11 +15,11 @@ pipeline {
                      dockerfile {
                                 filename 'Dockerfile'
                                 label 'builder && epyc'
-                                                     }
+                     }
               }
               steps {
                     echo 'Inside the container finally ! '
-                    sh 'ls'
+                    sh 'cat *'
               }
         }
    }
