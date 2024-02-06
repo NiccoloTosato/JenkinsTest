@@ -22,6 +22,8 @@ pipeline {
                     sh 'pwd'
               }
         }
+   }
+}
 
 
 /*
