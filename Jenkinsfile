@@ -6,16 +6,17 @@ pipeline {
                     label 'builder && epyc'
               }
               steps {
-              sh 'ls'
-              sh 'pwd'
+                    sh 'ls'
+                    sh 'pwd'
+                    sh 'hostname'
               }
          }
 
         stage ('In container step') {
               agent {
+                     label 'builder && epyc'
                      dockerfile {
                                 filename 'Dockerfile'
-                                label 'builder && epyc'
                      }
               }
               steps {
@@ -24,23 +25,3 @@ pipeline {
         }
    }
 }
-
-
-/*
-dockerfile {
-            filename 'Dockerfile'
-            dir '/u/builder/builder/building_container/orfeobuild/images/fedora37'
-            label 'builder && epyc'
-	    args '-e JAVA_OPTS="-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true"'
-        }
-    }
-
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
-    }
-}
-*/
