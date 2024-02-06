@@ -25,6 +25,7 @@ pipeline {
                     echo 'Inside the container finally'
                     sh 'pwd'
                     sh 'ls'
+                    sh 'hostname'
               }
         }
    }
