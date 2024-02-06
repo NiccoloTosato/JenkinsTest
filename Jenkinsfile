@@ -14,13 +14,15 @@ pipeline {
 
         stage ('In container step') {
               agent {
-                     label 'builder && epyc'
+ 
                      dockerfile {
                                 filename 'Dockerfile'
+                                label 'builder && epyc'
                      }
               }
               steps {
                     echo 'Inside the container finally'
+                    sh 'ps'
               }
         }
    }
