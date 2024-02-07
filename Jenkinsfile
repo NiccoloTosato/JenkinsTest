@@ -3,6 +3,7 @@ pipeline {
     options {
         timeout(time: 1, unit: 'HOURS') 
     }
+
     parameters {
         string(name: 'PROGRAM_PATH', defaultValue: '/opt/programs', description: 'Module path')
         string(name: 'PROGRAM_NAME', defaultValue: 'null', description: 'Module name')
@@ -11,8 +12,9 @@ pipeline {
         choice(name: 'OS', choices: ['fedora37', 'fedora38', 'fedora39','almalinux9'], description: 'Select distribution')
         choice(name: 'ARCH', choices: ['zen2', 'skylake'], description: 'Select architecture')
     }
+
     stages {
-        stage ('Init ad Download') {
+        stage ('Source retrival') {
               agent {
                     label 'builder && epyc'
               }
@@ -38,6 +40,8 @@ pipeline {
                      }
               }
               steps {
+                    def PREFIX="$params.PROGRAM_PATH/$params.PROGRAM_NAME/$params.PROGRAM_VERSION/"
+                    sh "mkdir -p $PREFIX "
                     sh 'ls /opt/programs/'
               }
        }
