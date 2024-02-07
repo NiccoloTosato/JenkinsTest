@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora:37
+FROM quay.io/fedora/fedora:38
 
 RUN dnf -y groupinstall "Development Tools" "Development Libraries" && dnf -y install gcc-fortran  procps-ng && \
   mkdir -p /opt/programs/ && \
