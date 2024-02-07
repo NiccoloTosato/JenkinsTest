@@ -37,9 +37,9 @@ pipeline {
               }
               agent {
                       dockerfile {
-                                filename 'Dockerfile'
+                                filename "Dockerfile.${params.OS}"
                                 label 'builder && epyc'
-                                args '--userns="keep-id"'
+                                args '--userns="keep-id" -v /opt/programs/:/opt/programs/'
                      }
               }
               steps {
