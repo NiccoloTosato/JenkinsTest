@@ -43,10 +43,21 @@ pipeline {
                      }
               }
               steps {
-                    sh 'ls -la /'
-                    sh 'ls -la /opt'
-                    sh 'ls /opt/programs/'
+                    dir("build/OpenBLAS") {
+                            sh "mkdir -p  ${PREFIX}-omp"
+                            sh "make USE_OPENMP=1 -j 128"
+                            sh "make test"
+                            sh "make PREFIX=${PREFIX}-omp install"
+
+                            sh "make clean"
+                            sh "make distclean"
+                            sh "mkdir -p  ${PREFIX}-omp"
+                            sh "make USE_OPENMP=0 -j 128"
+                            sh "make test"
+                            sh "make PREFIX=${PREFIX} install"
+                        }
+                     }
+                   }
               }
        }
-   }
-}
+
