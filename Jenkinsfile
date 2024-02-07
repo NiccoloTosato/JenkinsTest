@@ -22,6 +22,7 @@ pipeline {
                 echo "OS: ${params.OS}, ARCH: ${params.ARCH}"
                 sh 'ls'
                 sh "git clone --recursive  https://github.com/xianyi/OpenBLAS.git"
+                sh 'cd OpenBLAS'
                 sh "git checkout v${params.PROGRAM_VERSION}"
               }
          }
@@ -35,7 +36,6 @@ pipeline {
                      }
               }
               steps {
-                    sh 'cd OpenBLAS'
                     sh 'ls /opt/programs/'
               }
        }
