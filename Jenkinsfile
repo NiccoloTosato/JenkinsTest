@@ -17,6 +17,7 @@ pipeline {
                     label 'builder && epyc'
               }
               steps {
+                cleanWs()
                 echo "Build ${params.PROGRAMS_NAME} version ${params.PROGRAM_VERSION}"
                 echo "OS: ${params.OS}, ARCH: ${params.ARCH}"
                 sh 'ls'
