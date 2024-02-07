@@ -44,7 +44,6 @@ pipeline {
               steps {
                     dir("build/OpenBLAS") {
                             sh "ls /opt/programs"
-                            /*
                             sh "mkdir -p  ${PREFIX}-omp"
                             sh "make USE_OPENMP=1 -j 128"
                             sh "make test"
@@ -55,7 +54,7 @@ pipeline {
                             sh "make USE_OPENMP=0 -j 128"
                             sh "make test"
                             sh "make PREFIX=${PREFIX} install"
-                            */
+
                         }
                      }
                    }
