@@ -16,7 +16,8 @@ pipeline {
                     label 'builder && epyc'
               }
               steps {
-                    echo 'Building ${params.PROGRAMS_NAME}'
+
+                echo "Hello ${params.PROGRAMS_NAME}"
                     sh 'pwd'
                     sh 'hostname'
               }
@@ -36,6 +37,6 @@ pipeline {
                     sh 'pwd'
                     sh 'ls'
               }
-        }
+
    }
 }
