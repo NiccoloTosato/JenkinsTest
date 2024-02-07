@@ -38,7 +38,7 @@ pipeline {
                       dockerfile {
                                 filename "Dockerfile.${params.OS}"
                                 label 'builder && epyc'
-                                args "--userns="keep-id" -v /orfeo/cephfs/opt/programs/${params.ARCH}/${params.OS}:/opt/programs/"
+                                args "--userns=\"keep-id\" -v /orfeo/cephfs/opt/programs/${params.ARCH}/${params.OS}:/opt/programs/"
                      }
               }
               steps {
