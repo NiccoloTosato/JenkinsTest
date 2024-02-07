@@ -6,8 +6,8 @@ pipeline {
 
     parameters {
         string(name: 'PROGRAM_PATH', defaultValue: '/opt/programs', description: 'Module path')
-        string(name: 'PROGRAM_NAME', defaultValue: 'null', description: 'Module name')
-        string(name: 'PROGRAM_VERSION', defaultValue: 'null', description: 'Module version') 
+        string(name: 'PROGRAM_NAME', defaultValue: 'openBLAS', description: 'Module name')
+        string(name: 'PROGRAM_VERSION', defaultValue: '0.3.26', description: 'Module version') 
         booleanParam(name: 'GPU_SUPPORT', defaultValue: true, description: 'Enable or disable gpu support')
         choice(name: 'OS', choices: ['fedora37', 'fedora38', 'fedora39','almalinux9'], description: 'Select distribution')
         choice(name: 'ARCH', choices: ['zen2', 'skylake'], description: 'Select architecture')
@@ -22,7 +22,6 @@ pipeline {
                
                 echo "Build ${params.PROGRAMS_NAME} version ${params.PROGRAM_VERSION}"
                 echo "OS: ${params.OS}, ARCH: ${params.ARCH}"
-                sh 'ls'
                 dir("build") {
                             cleanWs()
                             sh "git clone --recursive  https://github.com/xianyi/OpenBLAS.git"
@@ -54,7 +53,6 @@ pipeline {
                             sh "make USE_OPENMP=0 -j 128"
                             sh "make test"
                             sh "make PREFIX=${PREFIX} install"
-                            sh "ls /opt/programs/openblas/0.3.26"
                         }
                      }
                    }
