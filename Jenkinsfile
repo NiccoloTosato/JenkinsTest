@@ -17,14 +17,15 @@ pipeline {
                     label 'builder && epyc'
               }
               steps {
-                cleanWs()
+               
                 echo "Build ${params.PROGRAMS_NAME} version ${params.PROGRAM_VERSION}"
                 echo "OS: ${params.OS}, ARCH: ${params.ARCH}"
                 sh 'ls'
-                sh "git clone --recursive  https://github.com/xianyi/OpenBLAS.git"
-                sh 'cd OpenBLAS'
-                sh 'pwd'
-                sh "git checkout v${params.PROGRAM_VERSION}"
+                dir("build") {
+                            cleanWs()
+                            sh "git clone --recursive  https://github.com/xianyi/OpenBLAS.git"
+                            sh "cd OpenBLAS && git checkout v${params.PROGRAM_VERSION}"
+               }
               }
          }
 
