@@ -32,6 +32,9 @@ pipeline {
          }
 
         stage ('Building step') {
+              environment {
+                          PREFIX = "$params.PROGRAM_PATH/$params.PROGRAM_NAME/$params.PROGRAM_VERSION/"
+              }
               agent {
                       dockerfile {
                                 filename 'Dockerfile'
@@ -40,9 +43,6 @@ pipeline {
                      }
               }
               steps {
-                  environment {
-                     PREFIX = "$params.PROGRAM_PATH/$params.PROGRAM_NAME/$params.PROGRAM_VERSION/"
-                  }
                     sh "mkdir -p $PREFIX "
                     sh 'ls /opt/programs/'
               }
