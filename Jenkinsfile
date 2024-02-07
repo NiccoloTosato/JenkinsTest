@@ -50,7 +50,6 @@ pipeline {
                             sh "make PREFIX=${PREFIX}-omp install"
 
                             sh "make clean"
-                            sh "make distclean"
                             sh "mkdir -p  ${PREFIX}-omp"
                             sh "make USE_OPENMP=0 -j 128"
                             sh "make test"
