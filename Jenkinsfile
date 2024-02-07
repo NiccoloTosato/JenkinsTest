@@ -44,7 +44,7 @@ pipeline {
               }
               steps {
                     sh 'ls -la /'
-                    sh "mkdir -p $PREFIX "
+                    sh "sudo mkdir -p $PREFIX"
                     sh 'ls /opt/programs/'
               }
        }
