@@ -23,6 +23,7 @@ pipeline {
                 sh 'ls'
                 sh "git clone --recursive  https://github.com/xianyi/OpenBLAS.git"
                 sh 'cd OpenBLAS'
+                sh 'pwd'
                 sh "git checkout v${params.PROGRAM_VERSION}"
               }
          }
