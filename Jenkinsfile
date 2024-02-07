@@ -54,6 +54,7 @@ pipeline {
                             sh "make USE_OPENMP=0 -j 128"
                             sh "make test"
                             sh "make PREFIX=${PREFIX} install"
+                            sh "ls /opt/programs/openblas/0.3.26"
                         }
                      }
                    }
