@@ -40,7 +40,9 @@ pipeline {
                      }
               }
               steps {
-                    def PREFIX="$params.PROGRAM_PATH/$params.PROGRAM_NAME/$params.PROGRAM_VERSION/"
+                  environment {
+                     PREFIX = "$params.PROGRAM_PATH/$params.PROGRAM_NAME/$params.PROGRAM_VERSION/"
+                  }
                     sh "mkdir -p $PREFIX "
                     sh 'ls /opt/programs/'
               }
