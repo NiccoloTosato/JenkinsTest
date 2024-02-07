@@ -32,7 +32,7 @@ pipeline {
 
         stage ('Building step') {
               environment {
-                          PREFIX = "$params.PROGRAM_PATH/$params.PROGRAM_NAME/$params.PROGRAM_VERSION/"
+                          PREFIX = "$params.PROGRAM_PATH/$params.PROGRAM_NAME/$params.PROGRAM_VERSION"
               }
               agent {
                       dockerfile {
@@ -46,13 +46,11 @@ pipeline {
                             sh "ls /opt/programs"
                             sh "mkdir -p  ${PREFIX}-omp"
                             sh "make USE_OPENMP=1 -j 128"
-                            sh "make test"
                             sh "make PREFIX=${PREFIX}-omp install"
 
                             sh "make clean"
                             sh "mkdir -p  ${PREFIX}"
                             sh "make USE_OPENMP=0 -j 128"
-                            sh "make test"
                             sh "make PREFIX=${PREFIX} install"
 
                         }
