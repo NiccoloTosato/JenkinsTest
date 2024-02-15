@@ -38,21 +38,20 @@ pipeline {
                       dockerfile {
                                 filename "Dockerfile.${params.OS}"
                                 label 'builder && epyc'
-                                args "--userns=\"keep-id\" -v /orfeo/cephfs/opt/programs/${params.ARCH}/${params.OS}:/opt/programs/"
+                                args "--userns=\"keep-id\" -v /orfeo/cephfs/opt/programs/${params.ARCH}/${params.OS}:/opt/programs/ -v /orfeo/cephfs/opt/modules:/opt/modules/"
                      }
               }
               steps {
                     dir("build/OpenBLAS") {
-                            sh "ls /opt/programs"
-                            sh "mkdir -p  ${PREFIX}-omp"
-                            sh "make USE_OPENMP=1 -j 128"
-                            sh "make PREFIX=${PREFIX}-omp install"
+                            sh ''' ls /opt/programs
+                               mkdir -p  ${PREFIX}-omp
+                               make USE_OPENMP=1 -j 128
+                               make PREFIX=${PREFIX}-omp install
 
-                            sh "make clean"
-                            sh "mkdir -p  ${PREFIX}"
-                            sh "make USE_OPENMP=0 -j 128"
-                            sh "make PREFIX=${PREFIX} install"
-
+                               make clean
+                               mkdir -p  ${PREFIX}
+                               make USE_OPENMP=0 -j 128
+                               make PREFIX=${PREFIX} install '''
                         }
                      }
                    }
