@@ -44,10 +44,13 @@ pipeline {
               steps {
                     dir("build/OpenBLAS") {
                             sh ''' ls /opt/programs
+                               ls /opt/modules
+                               module use /opt/modules/*
+                               module avail
                                mkdir -p  ${PREFIX}-omp
                                make USE_OPENMP=1 -j 128
                                make PREFIX=${PREFIX}-omp install
-
+                               
                                make clean
                                mkdir -p  ${PREFIX}
                                make USE_OPENMP=0 -j 128
