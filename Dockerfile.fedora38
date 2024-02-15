@@ -1,6 +1,6 @@
 FROM quay.io/fedora/fedora:38
 
-RUN dnf -y groupinstall "Development Tools" "Development Libraries" && dnf -y install gcc-fortran procps-ng lmod && \
+RUN dnf -y groupinstall "Development Tools" "Development Libraries" && dnf -y install gcc-fortran procps-ng Lmod && \
   mkdir -p /opt/programs/ && \
   mkdir -p /opt/modules && \
   chown -R 1337:1337 /opt/programs
