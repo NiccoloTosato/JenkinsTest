@@ -46,7 +46,7 @@ pipeline {
                     dir("build/OpenBLAS") {
                             sh ''' ls /opt/programs
                                ls /opt/modules
-                               env
+                               source /etc/profile.d/modules.sh
                                [ -z "$LMOD_CMD"] && exit 99
                                eval $LMOD_CMD use /opt/modules/*
                                eval $LMOD_CMD avail
