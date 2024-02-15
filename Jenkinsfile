@@ -45,9 +45,10 @@ pipeline {
                     dir("build/OpenBLAS") {
                             sh ''' ls /opt/programs
                                ls /opt/modules
-                               module use /opt/modules/*
-                               module avail
-                               module load openBLAS
+                               [ -n $LMOD_CMD] || exit 99
+                               $LMOD_CMD use /opt/modules/*
+                               $LMOD_CMD avail
+                               $LMOD_CMD load openBLAS
                                '''
                                /*
                                mkdir -p  ${PREFIX}-omp
