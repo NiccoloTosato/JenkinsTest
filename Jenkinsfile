@@ -47,10 +47,10 @@ pipeline {
                             sh ''' ls /opt/programs
                                ls /opt/modules
                                source /etc/profile.d/modules.sh
-                               [ -z "$LMOD_CMD"] && exit 99
-                               eval $LMOD_CMD use /opt/modules/*
-                               eval $LMOD_CMD avail
-                               eval $LMOD_CMD load openBLAS
+                               [ -z "$LMOD_CMD" ] && exit 99
+                               module use /opt/modules/*
+                               module avail
+                               module load openBLAS
                                '''
                                /*
                                mkdir -p  ${PREFIX}-omp
