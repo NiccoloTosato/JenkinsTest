@@ -48,6 +48,7 @@ pipeline {
                                module use /opt/modules/*
                                module avail
                                module load openBLAS
+                               '''
                                /*
                                mkdir -p  ${PREFIX}-omp
                                make USE_OPENMP=1 -j 128
@@ -58,7 +59,6 @@ pipeline {
                                make USE_OPENMP=0 -j 128
                                make PREFIX=${PREFIX} install
                                */
-                               '''
                         }
                      }
                    }
