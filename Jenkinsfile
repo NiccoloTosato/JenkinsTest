@@ -4,10 +4,12 @@ pipeline {
         timeout(time: 1, unit: 'HOURS') 
     }
 
+
+
     parameters {
         string(name: 'PROGRAM_PATH', defaultValue: '/opt/programs', description: 'Module path')
-        string(name: 'PROGRAM_NAME', defaultValue: 'openBLAS', description: 'Module name')
-        string(name: 'PROGRAM_VERSION', defaultValue: '0.3.26', description: 'Module version') 
+        string(name: 'MODULE_NAME', defaultValue: 'openBLAS', description: 'Module name')
+        string(name: 'MODULE_VERSION', defaultValue: '0.3.26', description: 'Module version') 
         booleanParam(name: 'GPU_SUPPORT', defaultValue: true, description: 'Enable or disable gpu support')
         choice(name: 'OS', choices: ['fedora37', 'fedora38', 'fedora39','almalinux9'], description: 'Select distribution')
         choice(name: 'ARCH', choices: ['amd', 'intel'], description: 'Select architecture')
@@ -20,20 +22,20 @@ pipeline {
               }
               steps {
                 
-                echo "Build ${params.PROGRAMS_NAME} version ${params.PROGRAM_VERSION}"
+                echo "Build ${params.MODULE_NAME} version ${params.MODULE_VERSION}"
                 echo "OS: ${params.OS}, ARCH: ${params.ARCH}"
                 sh 'id || whoami'
                 dir("build") {
                             cleanWs()
                             sh "git clone --recursive  https://github.com/xianyi/OpenBLAS.git"
-                            sh "cd OpenBLAS && git checkout v${params.PROGRAM_VERSION}"
+                            sh "cd OpenBLAS && git checkout v${params.MODULE_VERSION}"
                }
               }
          }
 
         stage ('Building step') {
               environment {
-                          PREFIX = "$params.PROGRAM_PATH/$params.PROGRAM_NAME/$params.PROGRAM_VERSION"
+                          PREFIX = "$params.PROGRAM_PATH/$params.MODULE_NAME/$params.MODULE_VERSION"
               }
               agent {
                       dockerfile {
