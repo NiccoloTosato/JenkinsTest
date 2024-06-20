@@ -11,7 +11,7 @@ pipeline {
         string(name: 'MODULE_NAME', defaultValue: 'openBLAS', description: 'Module name')
         string(name: 'MODULE_VERSION', defaultValue: '0.3.26', description: 'Module version') 
         booleanParam(name: 'GPU_SUPPORT', defaultValue: true, description: 'Enable or disable gpu support')
-        choice(name: 'OS', choices: ['fedora37', 'fedora38', 'fedora39','almalinux9'], description: 'Select distribution')
+        string(name: 'OS', defaultValue: 'fedora40', description: 'Select distribution')
         choice(name: 'ARCH', choices: ['amd', 'intel'], description: 'Select architecture')
     }
 
